@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.7/css/swiper.min.css"/>
+  
+  <link rel="stylesheet" href="style.css">
+  <title>swiper</title>
+</head>
+<body>
+  <div class="swiper-container main-slider loading">
+  <div class="swiper-wrapper">
+    <div class="swiper-slide">
+      <figure class="slide-bgimg" style="background: url(images/bg1.jpeg);">
+        <img src="images/bg1.jpeg" class="entity-img">
+      </figure>
+      <div class="content">
+        <p class="title">First Slide</p>
+        <span class="caption">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem aperiam porro dignissimos voluptates, aspernatur ipsam molestiae debitis laboriosam delectus officia unde optio odit labore sapiente esse recusandae officiis odio nostrum.</span>
+      </div>
+    </div>
+    <div class="swiper-slide">
+      <figure class="slide-bgimg" style="background: url(images/bg2.jpeg);">
+        <img src="images/bg2.jpeg" class="entity-img">
+      </figure>
+      <div class="content">
+        <p class="title">Second Slide</p>
+        <span class="caption">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem aperiam porro dignissimos voluptates, aspernatur ipsam molestiae debitis laboriosam delectus officia unde optio odit labore sapiente esse recusandae officiis odio nostrum.</span>
+      </div>
+    </div>
+    <div class="swiper-slide">
+      <figure class="slide-bgimg" style="background: url(images/bg3.jpeg);">
+        <img src="images/bg3.jpeg" class="entity-img">
+      </figure>
+      <div class="content">
+        <p class="title">Third Slide</p>
+        <span class="caption">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem aperiam porro dignissimos voluptates, aspernatur ipsam molestiae debitis laboriosam delectus officia unde optio odit labore sapiente esse recusandae officiis odio nostrum.</span>
+      </div>
+    </div>
+    <div class="swiper-slide">
+      <figure class="slide-bgimg" style="background: url(images/bg4.jpeg);">
+        <img src="images/bg4.jpeg" class="entity-img">
+      </figure>
+      <div class="content">
+        <p class="title">Fourth Slide</p>
+        <span class="caption">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem aperiam porro dignissimos voluptates, aspernatur ipsam molestiae debitis laboriosam delectus officia unde optio odit labore sapiente esse recusandae officiis odio nostrum.</span>
+      </div>
+    </div>
+    <div class="swiper-slide">
+      <figure class="slide-bgimg" style="background: url(images/bg5.jpeg);">
+        <img src="images/bg5.jpeg" class="entity-img">
+      </figure>
+      <div class="content">
+        <p class="title">Fifth Slide</p>
+        <span class="caption">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem aperiam porro dignissimos voluptates, aspernatur ipsam molestiae debitis laboriosam delectus officia unde optio odit labore sapiente esse recusandae officiis odio nostrum.</span>
+      </div>
+    </div>
+  </div>
+    <div class="swiper-button-prev swiper-button-white"></div>
+    <div class="swiper-button-next swiper-button-white"></div>
+  </div>
+<div class="swiper-container nav-slide loading">
+  <div class="swiper-wrapper" role="navigation">
+    <div class="swiper-slide">
+      <figure class="slide-bgimg"style="background: url(images/bg1.jpeg);">
+        <img src="images/bg1.jpeg" class="entity-img">
+      </figure>
+      <div class="content">
+        <p class="title">First Slide</p>
+      </div>
+    </div>
+    <div class="swiper-slide">
+      <figure class="slide-bgimg" style="background: url(images/bg2.jpeg);">
+        <img src="images/bg2.jpeg" class="entity-img">
+      </figure>
+      <div class="content">
+        <p class="title">Second Slide</p>
+      </div>
+    </div>
+    <div class="swiper-slide">
+      <figure class="slide-bgimg" style="background: url(images/bg3.jpeg);">
+        <img src="images/bg3.jpeg" class="entity-img">
+      </figure>
+      <div class="content">
+        <p class="title">Third Slide</p>
+      </div>
+    </div>
+    <div class="swiper-slide">
+      <figure class="slide-bgimg" style="background: url(images/bg4.jpeg);">
+        <img src="images/bg4.jpeg" class="entity-img">
+      </figure>
+      <div class="content">
+        <p class="title">Fourth Slide</p>
+      </div>
+    </div>
+    <div class="swiper-slide">
+      <figure class="slide-bgimg" style="background: url(images/bg5.jpeg);">
+        <img src="images/bg5.jpeg" class="entity-img">
+      </figure>
+      <div class="content">
+        <p class="title">Fifth Slide</p>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.7/js/swiper.min.js"></script>
+<script >
+  let mainSliderSelector = ".main-slider",
+      navSliderSelector = ".nav-slide",
+      interleaveOffset = 0.5;
+    let mainSliderOptions = {
+      loop: true,
+      speed: 1000,
+      autoplay: {
+        delay: 3000,
+      },
+      loopAdditionalSlides: 10,
+      grabSlidesProgress: true,
+      navigation: {
+        nextEl: "swiper-button-next",
+        prevEl: "swiper-button-prev",
+      },
+      on: {
+        init: function () {
+          this.autoplay.stop();
+        },
+        imagesReady: function () {
+          this.el.classList.remove("loading");
+          this.autoplay.start();
+        },
+        slideChangeTransitionEnd: function () {
+          let swiper = this,
+            captions = swiper.el.querySelectorAll(".caption");
+          for (let i = 0; i < captions.length; ++i) {
+            captions[i].classList.remove("show");
+          }
+          swiper.slides[swiper.activeIndex].querySelector(".caption").classList.add("show");
+        },
+        progress: function () {
+          let swiper = this;
+          for (let i = 0; i < swiper.slides.length; i++) {
+            let slideProgress = swiper.slides[i].progress,
+              innerOffset = swiper.width * interleaveOffset,
+              innerTranslate = slideProgress * innerOffset;
+            swiper.slides[i].querySelector(".slide-bgimg").style.transform =
+              "translateX(" + innerTranslate + "px)";
+          }
+        },
+        touchStart: function () {
+          let swiper = this;
+          for (let i = 0; i < swiper.slides.length; i++) {
+            swiper.slides[i].style.transition = "";
+          }
+        },
+        setTransition: function (speed) {
+          let swiper = this;
+          for (let i = 0; i < swiper.slides.length; i++) {
+            swiper.slides[i].style.transition = speed + "ms";
+            swiper.slides[i].querySelector(".slide-bgimg").style.transition =
+              speed + "ms";
+          }
+        },
+      },
+    };
+
+    let mainSlider = new Swiper(mainSliderSelector, mainSliderOptions);
+    let navSliderOption = {
+      loop: true,
+      loopAdditionalSlides: 10,
+      speed: 1000,
+      spaceBetween: 5,
+      slidesPerView: 5,
+      centeredSlides: true,
+      touchRatio: 0.2,
+      slideToClickedSlide: true,
+      direction: "vertical",
+      on: {
+        imagesReady: function () {
+          this.el.classList.remove("loading");
+        },
+        click: function () {
+          mainSlider.autoplay.stop();
+        },
+      },
+    };
+    let navSlider = new Swiper(navSliderSelector, navSliderOption);
+
+    mainSlider.controller.control = navSlider;
+    navSlider.controller.control = mainSlider;
+
+</script>
+</body>
+</html>
